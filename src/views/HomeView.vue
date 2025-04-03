@@ -1,14 +1,22 @@
 <script setup>
-import HomeTitleSection from '@/components/Home/HomeTitleSection.vue'
-import HomePopularProducts from '@/components/Home/HomePopularProducts.vue'
+import HomeHeroSection from '@/components/Home/HomeHeroSection.vue';
+import HomeFeaturedProducts from '@/components/Home/HomeFeaturedProducts.vue';
+import HomeCategories from '@/components/Home/HomeCategories.vue';
+import HomeTrending from '@/components/Home/HomeTrending.vue';
+import HomeNewsletter from '@/components/Home/HomeNewsletter.vue';
 </script>
 
 <template>
   <main>
 
-    <HomeTitleSection/>
+    <HomeHeroSection />
 
-    <HomePopularProducts/>
+    <HomeFeaturedProducts />
 
+    <HomeCategories />
+
+    <HomeTrending />
+    
+    <HomeNewsletter />
   </main>
 </template>

@@ -79,7 +79,16 @@ export default {
       image: 'https://picsum.photos/seed/Chaussure_de_sport/500/500',
       colors: ['Blanc', 'Noir', 'Gris', 'Bleu'],
       sizes: [38, 39, 40, 41, 42, 43, 44],
-
+      brand: 'SportPro',
+      category: 'Sport',
+      inStock: true,
+      rating: 3,
+      reviews: 150,
+      discount: 5,
+      isNew: true,
+      materials: ['Textile respirant', 'Semelle caoutchouc', 'Mousse amortissante'],
+      features: ['Polyvalence', 'Confort', 'Style'],
+      tags: ['fitness', 'gym', 'loisir']
     },
     {
       id: 4,
