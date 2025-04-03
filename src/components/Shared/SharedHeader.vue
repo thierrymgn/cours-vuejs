@@ -1,5 +1,13 @@
 <script setup>
 
+const menuItems = [
+  { title: 'Accueil', url: '#' },
+  { title: 'Nouveautés', url: '#' },
+  { title: 'Homme', url: '#' },
+  { title: 'Femme', url: '#' },
+  { title: 'Contact', url: '#' },
+]
+
 </script>
 
 <template>
@@ -7,11 +15,7 @@
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold">Chaussures Élégance</h1>
       <nav class="space-x-6 hidden md:flex">
-        <a href="#" class="hover:text-blue-600">Accueil</a>
-        <a href="#" class="hover:text-blue-600">Nouveautés</a>
-        <a href="#" class="hover:text-blue-600">Homme</a>
-        <a href="#" class="hover:text-blue-600">Femme</a>
-        <a href="#" class="hover:text-blue-600">Contact</a>
+        <a v-for="menuItem in menuItems" :key="menuItem.title"  :href="menuItem.url" class="hover:text-blue-600">{{menuItem.title}}</a>
       </nav>
       <button class="md:hidden">☰</button>
     </div>
