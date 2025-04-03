@@ -6,7 +6,7 @@ defineProps({
     required: true,
   },
   formattedPrice: {
-    type: Number,
+    type: String,
     required: true,
   },
 })

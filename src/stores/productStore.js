@@ -83,31 +83,31 @@ export const useProductStore = defineStore('products', {
                     this.homeCategories = [
                         {
                             id: 1,
-                            name: "Sneakers",
+                            name: "Sport",
                             image: "https://picsum.photos/id/237/600/400",
-                            description: "Les meilleures sneakers du moment",
-                            slug: "sneakers"
+                            description: "Les meilleures chaussures de sport",
+                            slug: "Sport"
                         },
                         {
                             id: 2,
-                            name: "Streetwear",
+                            name: "Danse",
                             image: "https://picsum.photos/id/238/600/400",
-                            description: "Vêtements et accessoires streetwear",
-                            slug: "streetwear"
+                            description: "Chaussures pour tous types de danse",
+                            slug: "Danse"
                         },
                         {
                             id: 3,
-                            name: "Électronique",
+                            name: "Casual",
                             image: "https://picsum.photos/id/239/600/400",
-                            description: "Consoles, jeux vidéo et plus",
-                            slug: "electronique"
+                            description: "Style décontracté pour tous les jours",
+                            slug: "Casual"
                         },
                         {
                             id: 4,
-                            name: "Cartes à collectionner",
+                            name: "Enfant",
                             image: "https://picsum.photos/id/240/600/400",
-                            description: "Pokémon, Magic et autres",
-                            slug: "cartes"
+                            description: "Chaussures adaptées aux enfants",
+                            slug: "Enfant"
                         }
                     ]
                 }
@@ -175,37 +175,37 @@ export const useProductStore = defineStore('products', {
         filterProducts(filters) {
             let filteredProducts = [...this.products]
 
-            if (filters.category) {
+            if (filters.category !== null) {
                 filteredProducts = filteredProducts.filter(product =>
                     product.category === filters.category
                 )
             }
 
-            if (filters.brand) {
+            if (filters.brand !== null) {
                 filteredProducts = filteredProducts.filter(product =>
                     product.brand === filters.brand
                 )
             }
 
-            if (filters.minPrice !== undefined) {
+            if (filters.minPrice !== null) {
                 filteredProducts = filteredProducts.filter(product =>
                     product.price >= filters.minPrice
                 )
             }
 
-            if (filters.maxPrice !== undefined) {
+            if (filters.maxPrice !== null) {
                 filteredProducts = filteredProducts.filter(product =>
                     product.price <= filters.maxPrice
                 )
             }
 
-            if (filters.inStock !== undefined) {
+            if (filters.inStock !== null) {
                 filteredProducts = filteredProducts.filter(product =>
                     product.inStock === filters.inStock
                 )
             }
 
-            if (filters.isNew !== undefined) {
+            if (filters.isNew !== null) {
                 filteredProducts = filteredProducts.filter(product =>
                     product.isNew === filters.isNew
                 )

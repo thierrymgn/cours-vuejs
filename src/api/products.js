@@ -17,31 +17,31 @@ export default {
   homeCategories: [
     {
       id: 1,
-      name: "Sneakers",
+      name: "Sport",
       image: "https://picsum.photos/id/237/600/400",
-      description: "Les meilleures sneakers du moment",
-      slug: "sneakers"
+      description: "Les meilleures chaussures de sport",
+      slug: "Sport"
     },
     {
       id: 2,
-      name: "Streetwear",
+      name: "Danse",
       image: "https://picsum.photos/id/238/600/400",
-      description: "Vêtements et accessoires streetwear",
-      slug: "streetwear"
+      description: "Chaussures pour tous types de danse",
+      slug: "Danse"
     },
     {
       id: 3,
-      name: "Électronique",
+      name: "Casual",
       image: "https://picsum.photos/id/239/600/400",
-      description: "Consoles, jeux vidéo et plus",
-      slug: "electronique"
+      description: "Style décontracté pour tous les jours",
+      slug: "Casual"
     },
     {
       id: 4,
-      name: "Cartes à collectionner",
+      name: "Enfant",
       image: "https://picsum.photos/id/240/600/400",
-      description: "Pokémon, Magic et autres",
-      slug: "cartes"
+      description: "Chaussures adaptées aux enfants",
+      slug: "Enfant"
     }
   ],
   brands: [

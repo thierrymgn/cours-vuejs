@@ -2,11 +2,8 @@
 import { ref } from 'vue'
 
 const menuItems = [
-  { title: 'Sneakers', url: '#' },
-  { title: 'Streetwear', url: '#' },
-  { title: 'Électronique', url: '#' },
-  { title: 'Cartes', url: '#' },
-  { title: 'Accessoires', url: '#' },
+  { title: 'Accueil', url: '/' },
+  { title: 'Produits', url: '/products' },
 ]
 
 const mobileMenuOpen = ref(false)
@@ -44,9 +41,15 @@ function search() {
       </div>
       
       <nav class="hidden md:flex items-center space-x-6">
-        <a v-for="item in menuItems" :key="item.title" :href="item.url" class="hover:text-green-600 font-medium">
+        <router-link 
+          v-for="item in menuItems" 
+          :key="item.title" 
+          :to="item.url" 
+          class="hover:text-green-600 font-medium"
+          :class="$route.path === item.url ? 'text-green-600' : 'text-gray-700'"
+        >
           {{ item.title }}
-        </a>
+        </router-link>
         <a href="#" class="text-gray-600 hover:text-green-600">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -85,9 +88,15 @@ function search() {
         </button>
       </div>
       <div class="space-y-3">
-        <a v-for="item in menuItems" :key="item.title" :href="item.url" class="block py-2 text-gray-800 hover:text-green-600 font-medium">
+        <router-link 
+          v-for="item in menuItems" 
+          :key="item.title" 
+          :to="item.url" 
+          class="block py-2 font-medium"
+          :class="$route.path === item.url ? 'text-green-600' : 'text-gray-800 hover:text-green-600'"
+        >
           {{ item.title }}
-        </a>
+        </router-link>
         <div class="flex space-x-4 pt-2 border-t">
           <a href="#" class="text-gray-600 hover:text-green-600 flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
