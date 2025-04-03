@@ -27,6 +27,5 @@ function addCounter() {
       <span>{{ counter }}</span>
       <button class="p-2 border rounded" @click="decrementCounter(counter)">-</button>
     </div>
-
   </main>
 </template>

@@ -1,14 +1,14 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import productsData from '@/api/products.js'
+import { onMounted } from 'vue'
+import { useProductStore } from '@/stores/productStore'
 import ProductTrendingCard from '../Product/ProductTrendingCard.vue'
 
-const trendingProducts = ref([])
+const productStore = useProductStore()
 
-onMounted(() => {
-  const bestSellerIds = productsData.bestSellers || []
-  trendingProducts.value = productsData.products
-    .filter(product => bestSellerIds.includes(product.id))
+onMounted(async () => {
+  if (productStore.products.length === 0) {
+    await productStore.fetchProducts()
+  }
 })
 
 function formatPrice(price) {
@@ -25,17 +25,35 @@ function formatPrice(price) {
           Les articles les plus recherchés et les plus vendus cette semaine.
         </p>
       </div>
-      
-      <div v-if="trendingProducts.length > 0" class="grid grid-cols-1 gap-8">
+
+      <div v-if="productStore.isLoading" class="text-center py-12">
+        <div
+          class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-200 border-t-green-600"
+        ></div>
+        <p class="mt-4 text-gray-500">Chargement des tendances...</p>
+      </div>
+
+      <div v-else-if="productStore.error" class="text-center py-12">
+        <p class="text-red-500">{{ productStore.error }}</p>
+        <button
+          @click="productStore.fetchProducts"
+          class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        >
+          Réessayer
+        </button>
+      </div>
+
+      <div v-else-if="productStore.bestSellers.length > 0" class="grid grid-cols-1 gap-8">
         <ProductTrendingCard
-          v-for="product in trendingProducts"
+          v-for="product in productStore.bestSellers"
           :key="product.id"
           :product="product"
-          :formatted-price="formatPrice(product.price)"/>
+          :formatted-price="formatPrice(product.price)"
+        />
       </div>
-      
+
       <div v-else class="text-center py-12">
-        <p class="text-gray-500">Chargement des tendances...</p>
+        <p class="text-gray-500">Aucune tendance disponible actuellement.</p>
       </div>
     </div>
   </section>

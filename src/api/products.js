@@ -16,6 +16,36 @@ export default {
     "Maison",
     "Danse"
   ],
+  homeCategories: [
+    {
+      id: 1,
+      name: "Sneakers",
+      image: "https://picsum.photos/id/237/600/400",
+      description: "Les meilleures sneakers du moment",
+      slug: "sneakers"
+    },
+    {
+      id: 2,
+      name: "Streetwear",
+      image: "https://picsum.photos/id/238/600/400",
+      description: "Vêtements et accessoires streetwear",
+      slug: "streetwear"
+    },
+    {
+      id: 3,
+      name: "Électronique",
+      image: "https://picsum.photos/id/239/600/400",
+      description: "Consoles, jeux vidéo et plus",
+      slug: "electronique"
+    },
+    {
+      id: 4,
+      name: "Cartes à collectionner",
+      image: "https://picsum.photos/id/240/600/400",
+      description: "Pokémon, Magic et autres",
+      slug: "cartes"
+    }
+  ],
   brands: [
     "RunFast",
     "CityWalk",
