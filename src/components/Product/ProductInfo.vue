@@ -13,6 +13,12 @@ const emit = defineEmits(['add-to-cart'])
 const selectedSize = ref(props.product.sizes?.length > 0 ? props.product.sizes[0] : null)
 const selectedColor = ref(props.product.colors?.length > 0 ? props.product.colors[0] : null)
 
+const colorMap = {
+  'Navy Blue': '#0a192f',
+  'Burgundy': '#800020',
+  'Light Blue': '#add8e6'
+}
+
 const displayPrice = computed(() => {
   if (props.product.discount && props.product.discount > 0) {
     return props.product.price * (1 - props.product.discount / 100)
@@ -31,6 +37,14 @@ function addToCart() {
     color: selectedColor.value,
     quantity: 1
   })
+}
+
+function getColorHex(colorName) {
+  if (colorMap[colorName]) {
+    return colorMap[colorName]
+  }
+  
+  return colorName.toLowerCase()
 }
 </script>
 
@@ -87,7 +101,7 @@ function addToCart() {
         >
           <span 
             class="h-8 w-8 rounded-full border border-black border-opacity-10"
-            :style="{ backgroundColor: color.toLowerCase() }"
+            :style="{ backgroundColor: getColorHex(color) }"
             :title="color"
           ></span>
         </button>
