@@ -62,7 +62,7 @@ onMounted(async () => {
             <p class="text-sm text-white mt-1">{{ category.description }}</p>
             <router-link
               :to="`/category/${category.slug}`"
-              class="mt-4 bg-white text-gray-900 px-4 py-2 rounded text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+              class="mt-4 bg-white text-gray-900 text-center px-4 py-2 rounded text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300"
             >
               Explorer
             </router-link>

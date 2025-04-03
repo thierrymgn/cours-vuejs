@@ -24,7 +24,9 @@ function search() {
 <template>
   <header class="border-b shadow-sm sticky top-0 bg-white z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-green-600">StockX Clone</h1>
+      <router-link to="/" class="flex items-center">
+        <h1 class="text-2xl font-bold text-green-600">StockX Clone</h1>
+      </router-link>
       
       <div class="hidden md:flex items-center relative flex-1 max-w-xl mx-6">
         <input 
