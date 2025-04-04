@@ -55,12 +55,12 @@ onMounted(async () => {
       </div>
 
       <div class="mt-10 text-center">
-        <a
-          href="#"
+        <router-link
+          to="/products"
           class="inline-block px-6 py-3 border border-gray-900 text-gray-900 font-medium rounded hover:bg-gray-900 hover:text-white transition"
         >
           Voir tous les produits
-        </a>
+        </router-link>
       </div>
     </div>
   </section>

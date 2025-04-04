@@ -43,7 +43,7 @@ function getColorHex(colorName) {
   if (colorMap[colorName]) {
     return colorMap[colorName]
   }
-  
+
   return colorName.toLowerCase()
 }
 </script>
@@ -88,18 +88,18 @@ function getColorHex(colorName) {
     <div v-if="product.colors && product.colors.length > 0" class="mt-6">
       <h3 class="text-sm font-medium text-gray-900">Couleur</h3>
       <div class="mt-2 flex space-x-2">
-        <button 
-          v-for="color in product.colors" 
-          :key="color" 
+        <button
+          v-for="color in product.colors"
+          :key="color"
           @click="selectedColor = color"
           class="relative p-0.5 rounded-full flex items-center justify-center focus:outline-none ring-2 ring-offset-2"
           :class="[
-            selectedColor === color 
-              ? 'ring-green-500' 
+            selectedColor === color
+              ? 'ring-green-500'
               : 'ring-transparent hover:ring-gray-300'
           ]"
         >
-          <span 
+          <span
             class="h-8 w-8 rounded-full border border-black border-opacity-10"
             :style="{ backgroundColor: getColorHex(color) }"
             :title="color"
@@ -114,14 +114,14 @@ function getColorHex(colorName) {
         <a href="#" class="text-sm font-medium text-green-600 hover:text-green-500">Guide des tailles</a>
       </div>
       <div class="mt-2 grid grid-cols-4 gap-2">
-        <button 
-          v-for="size in product.sizes" 
-          :key="size" 
+        <button
+          v-for="size in product.sizes"
+          :key="size"
           @click="selectedSize = size"
           class="py-2 px-4 text-center border rounded-md text-sm font-medium focus:outline-none"
           :class="[
-            selectedSize === size 
-              ? 'bg-gray-900 text-white border-transparent' 
+            selectedSize === size
+              ? 'bg-gray-900 text-white border-transparent'
               : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
           ]"
         >
@@ -131,7 +131,7 @@ function getColorHex(colorName) {
     </div>
 
     <div class="mt-8 flex flex-col space-y-3">
-      <button 
+      <button
         @click="addToCart"
         class="w-full py-3 px-4 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500"
         :disabled="!product.inStock"
@@ -146,8 +146,8 @@ function getColorHex(colorName) {
     <div class="mt-6">
       <h3 class="text-sm font-medium text-gray-900">Caractéristiques</h3>
       <div class="mt-2 flex flex-wrap gap-2">
-        <span 
-          v-for="(feature, index) in product.features" 
+        <span
+          v-for="(feature, index) in product.features"
           :key="index"
           class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
         >

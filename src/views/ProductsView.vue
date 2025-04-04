@@ -121,10 +121,8 @@ onMounted(async () => {
 
 <template>
   <main>
-    <ProductsHeader
-      :title="categoryFromRoute ? categoryFromRoute : 'Tous les produits'"
-      :category="categoryFromRoute"
-    />
+    <ProductsHeader :title="categoryFromRoute ? categoryFromRoute : 'Tous les produits'"
+      :category="categoryFromRoute" />
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-8 gap-4">
@@ -137,11 +135,10 @@ onMounted(async () => {
         <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
           <button
             class="sm:hidden px-4 py-2 text-sm border border-gray-300 rounded-md text-gray-700 bg-white shadow-sm hover:bg-gray-50"
-            @click="mobileFiltersOpen = !mobileFiltersOpen"
-          >
+            @click="mobileFiltersOpen = !mobileFiltersOpen">
             Filtres
             <span class="ml-1 text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
-              {{ Object.values(activeFilters).filter((v) => v !== null).length }}
+              {{Object.values(activeFilters).filter((v) => v !== null).length}}
             </span>
           </button>
           <ProductsSorting :selected="sortOption" @update-sorting="updateSorting" />
@@ -151,29 +148,21 @@ onMounted(async () => {
 
     <div class="flex flex-col lg:flex-row gap-8 mx-auto px-4 sm:px-6 lg:px-8 pb-8">
       <div class="lg:w-1/4">
-        <ProductsFilter
-          :active-filters="activeFilters"
-          :categories="productStore.categories"
-          :brands="[...new Set(productStore.products.map((p) => p.brand))]"
-          @update-filters="updateFilters"
-        />
+        <ProductsFilter :active-filters="activeFilters" :categories="productStore.categories"
+          :brands="[...new Set(productStore.products.map((p) => p.brand))]" @update-filters="updateFilters" />
       </div>
 
       <div class="lg:w-3/4">
         <div v-if="isLoading" class="flex justify-center items-center py-20">
-          <div
-            class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-green-600"
-          ></div>
+          <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-green-600">
+          </div>
         </div>
 
         <div v-else-if="allFilteredProducts.length === 0" class="py-12 text-center">
           <p class="text-gray-500 text-lg">
             Aucun produit ne correspond à vos critères de recherche.
           </p>
-          <button
-            @click="resetAllFilters"
-            class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-          >
+          <button @click="resetAllFilters" class="mt-4 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
             Réinitialiser les filtres
           </button>
         </div>
@@ -192,19 +181,11 @@ onMounted(async () => {
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 products-grid">
-            <ProductCard
-              v-for="product in paginatedProducts"
-              :key="product.id"
-              :product="product"
-            />
+            <ProductCard v-for="product in paginatedProducts" :key="product.id" :product="product" />
           </div>
 
-          <ProductsPagination
-            :current-page="currentPage"
-            :total-items="allFilteredProducts.length"
-            :items-per-page="itemsPerPage"
-            @page-changed="changePage"
-          />
+          <ProductsPagination :current-page="currentPage" :total-items="allFilteredProducts.length"
+            :items-per-page="itemsPerPage" @page-changed="changePage" />
         </div>
       </div>
     </div>

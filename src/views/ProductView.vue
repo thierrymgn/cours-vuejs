@@ -3,6 +3,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductStore } from '@/stores/productStore'
+import {useCartStore} from '@/stores/cartStore.js'
 
 import ProductBreadcrumb from '@/components/Product/ProductBreadcrumb.vue'
 import ProductGallery from '@/components/Product/ProductGallery.vue'
@@ -13,6 +14,7 @@ import ProductSimilar from '@/components/Product/ProductSimilar.vue'
 
 const route = useRoute()
 const productStore = useProductStore()
+const cartStore = useCartStore()
 const isLoading = ref(true)
 const error = ref(null)
 
@@ -25,11 +27,11 @@ const product = computed(() => {
 onMounted(async () => {
   try {
     isLoading.value = true
-    
+
     if (productStore.products.length === 0) {
       await productStore.fetchProducts()
     }
-    
+
     if (!product.value) {
       error.value = "Produit introuvable"
     }
@@ -42,8 +44,12 @@ onMounted(async () => {
 })
 
 function handleAddToCart(cartItem) {
-  console.log('Ajout au panier:', cartItem)
-  alert(`Produit "${cartItem.product.name}" ajouté au panier!`)
+  cartStore.addItem(
+    cartItem.product,
+    cartItem.size,
+    cartItem.color,
+    cartItem.quantity
+  )
 }
 </script>
 
@@ -52,7 +58,7 @@ function handleAddToCart(cartItem) {
     <div v-if="isLoading" class="max-w-7xl mx-auto px-4 py-12 flex justify-center">
       <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-green-600"></div>
     </div>
-    
+
     <div v-else-if="error" class="max-w-7xl mx-auto px-4 py-12 text-center">
       <div class="bg-red-50 border border-red-200 rounded-lg p-6">
         <h2 class="text-xl font-bold text-red-600 mb-2">{{ error }}</h2>
@@ -62,20 +68,20 @@ function handleAddToCart(cartItem) {
         </router-link>
       </div>
     </div>
-    
+
     <div v-else-if="product" class="max-w-7xl mx-auto px-4">
       <ProductBreadcrumb :product="product" />
-      
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         <ProductGallery :main-image="product.image" :images="product.images ?? []" />
-        
+
         <ProductInfo :product="product" @add-to-cart="handleAddToCart" />
       </div>
-      
+
       <ProductTabs :product="product" />
-      
+
       <ProductPriceHistory :product="product" />
-      
+
       <ProductSimilar :product="product" :limit="4" />
     </div>
   </main>

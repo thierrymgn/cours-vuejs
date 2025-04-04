@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
+import CartIcon from '@/components/Cart/CartIcon.vue'
+import { useCartStore } from '@/stores/cartStore'
 
+const cartStore = useCartStore()
 const menuItems = [
   { title: 'Accueil', url: '/' },
   { title: 'Produits', url: '/products' },
@@ -24,12 +27,12 @@ function search() {
       <router-link to="/" class="flex items-center">
         <h1 class="text-2xl font-bold text-green-600">StockX Clone</h1>
       </router-link>
-      
+
       <div class="hidden md:flex items-center relative flex-1 max-w-xl mx-6">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="Rechercher des produits..." 
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Rechercher des produits..."
           class="border border-gray-300 rounded-full py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
           @keyup.enter="search"
         >
@@ -39,29 +42,28 @@ function search() {
           </svg>
         </button>
       </div>
-      
+
       <nav class="hidden md:flex items-center space-x-6">
-        <router-link 
-          v-for="item in menuItems" 
-          :key="item.title" 
-          :to="item.url" 
+        <router-link
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.url"
           class="hover:text-green-600 font-medium"
           :class="$route.path === item.url ? 'text-green-600' : 'text-gray-700'"
         >
           {{ item.title }}
+        </router-link>
+        <router-link to="/cart" class="hover:text-green-600 font-medium" :class="$route.path === '/cart' ? 'text-green-600' : 'text-gray-700'">
+          Panier
         </router-link>
         <a href="#" class="text-gray-600 hover:text-green-600">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </a>
-        <a href="#" class="text-gray-600 hover:text-green-600">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-          </svg>
-        </a>
+        <CartIcon />
       </nav>
-      
+
       <button @click="toggleMobileMenu" class="md:hidden text-gray-600">
         <svg v-if="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -71,13 +73,13 @@ function search() {
         </svg>
       </button>
     </div>
-    
+
     <div v-if="mobileMenuOpen" class="md:hidden px-4 py-3 border-t bg-white">
       <div class="flex items-center relative mb-3">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="Rechercher des produits..." 
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Rechercher des produits..."
           class="border border-gray-300 rounded-full py-2 px-4 w-full focus:outline-none focus:ring-2 focus:ring-green-500"
           @keyup.enter="search"
         >
@@ -88,10 +90,10 @@ function search() {
         </button>
       </div>
       <div class="space-y-3">
-        <router-link 
-          v-for="item in menuItems" 
-          :key="item.title" 
-          :to="item.url" 
+        <router-link
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.url"
           class="block py-2 font-medium"
           :class="$route.path === item.url ? 'text-green-600' : 'text-gray-800 hover:text-green-600'"
         >
@@ -104,12 +106,18 @@ function search() {
             </svg>
             Mon compte
           </a>
-          <a href="#" class="text-gray-600 hover:text-green-600 flex items-center">
+          <router-link to="/cart" class="text-gray-600 hover:text-green-600 flex items-center" :class="$route.path === '/cart' ? 'text-green-600' : ''">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
             Panier
-          </a>
+            <span
+              v-if="cartStore.count > 0"
+              class="ml-1 bg-green-100 text-green-800 rounded-full px-2 py-0.5 text-xs"
+            >
+              {{ cartStore.count }}
+            </span>
+          </router-link>
         </div>
       </div>
     </div>

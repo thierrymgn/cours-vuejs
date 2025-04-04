@@ -30,7 +30,7 @@ function selectImage(image) {
       <img
         :src="selectedImage"
         :alt="'Product image'"
-        class="h-full w-full object-contain object-center"
+        class="h-full w-full object-cover object-center"
       />
     </div>
 

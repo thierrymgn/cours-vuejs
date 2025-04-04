@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, watch } from 'vue'
+import router from '@/router/index.js'
 
 const props = defineProps({
   activeFilters: {
@@ -71,24 +72,25 @@ function resetFilters() {
       <h3 class="text-sm font-medium text-gray-900 mb-3">Catégories</h3>
       <div class="space-y-2">
         <div class="flex items-center">
-          <input 
-            id="category-all" 
-            type="radio" 
-            name="category" 
-            v-model="filters.category" 
+          <input
+            id="category-all"
+            type="radio"
+            name="category"
+            v-model="filters.category"
             :value="null"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
           <label for="category-all" class="ml-2 text-sm text-gray-700">Toutes les catégories</label>
         </div>
         <div v-for="category in categories" :key="category" class="flex items-center">
-          <input 
-            :id="'category-' + category" 
-            type="radio" 
-            name="category" 
-            v-model="filters.category" 
+          <input
+            :id="'category-' + category"
+            type="radio"
+            name="category"
+            v-model="filters.category"
             :value="category"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
+            @click="router.push(`/category/${category}`)"
           />
           <label :for="'category-' + category" class="ml-2 text-sm text-gray-700">{{ category }}</label>
         </div>
@@ -99,22 +101,22 @@ function resetFilters() {
       <h3 class="text-sm font-medium text-gray-900 mb-3">Marques</h3>
       <div class="space-y-2 max-h-40 overflow-y-auto">
         <div class="flex items-center">
-          <input 
-            id="brand-all" 
-            type="radio" 
-            name="brand" 
-            v-model="filters.brand" 
+          <input
+            id="brand-all"
+            type="radio"
+            name="brand"
+            v-model="filters.brand"
             :value="null"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
           <label for="brand-all" class="ml-2 text-sm text-gray-700">Toutes les marques</label>
         </div>
         <div v-for="brand in brands" :key="brand" class="flex items-center">
-          <input 
-            :id="'brand-' + brand" 
-            type="radio" 
-            name="brand" 
-            v-model="filters.brand" 
+          <input
+            :id="'brand-' + brand"
+            type="radio"
+            name="brand"
+            v-model="filters.brand"
             :value="brand"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
@@ -127,11 +129,11 @@ function resetFilters() {
       <h3 class="text-sm font-medium text-gray-900 mb-3">Prix</h3>
       <div class="space-y-2">
         <div v-for="range in priceRanges" :key="range.id" class="flex items-center">
-          <input 
-            :id="'price-' + range.id" 
-            type="radio" 
-            name="price" 
-            v-model="selectedPriceRange" 
+          <input
+            :id="'price-' + range.id"
+            type="radio"
+            name="price"
+            v-model="selectedPriceRange"
             :value="range.id"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
@@ -144,22 +146,22 @@ function resetFilters() {
       <h3 class="text-sm font-medium text-gray-900 mb-3">Disponibilité</h3>
       <div class="space-y-2">
         <div class="flex items-center">
-          <input 
-            id="availability-all" 
-            type="radio" 
-            name="availability" 
-            v-model="filters.inStock" 
+          <input
+            id="availability-all"
+            type="radio"
+            name="availability"
+            v-model="filters.inStock"
             :value="null"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
           <label for="availability-all" class="ml-2 text-sm text-gray-700">Tous les produits</label>
         </div>
         <div class="flex items-center">
-          <input 
-            id="availability-instock" 
-            type="radio" 
-            name="availability" 
-            v-model="filters.inStock" 
+          <input
+            id="availability-instock"
+            type="radio"
+            name="availability"
+            v-model="filters.inStock"
             :value="true"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
@@ -172,22 +174,22 @@ function resetFilters() {
       <h3 class="text-sm font-medium text-gray-900 mb-3">Nouveautés</h3>
       <div class="space-y-2">
         <div class="flex items-center">
-          <input 
-            id="new-all" 
-            type="radio" 
-            name="new" 
-            v-model="filters.isNew" 
+          <input
+            id="new-all"
+            type="radio"
+            name="new"
+            v-model="filters.isNew"
             :value="null"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
           <label for="new-all" class="ml-2 text-sm text-gray-700">Tous les produits</label>
         </div>
         <div class="flex items-center">
-          <input 
-            id="new-only" 
-            type="radio" 
-            name="new" 
-            v-model="filters.isNew" 
+          <input
+            id="new-only"
+            type="radio"
+            name="new"
+            v-model="filters.isNew"
             :value="true"
             class="h-4 w-4 text-green-600 focus:ring-green-500"
           />
